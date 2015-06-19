@@ -20,7 +20,6 @@ export VISUAL=${EDITOR}
 export GIT_EDITOR=${EDITOR}
 
 [[ -s ${HOME}/.bash_prompt ]] && source ${HOME}/.bash_prompt
-[[ -s ${HOME}/.bash_prompt ]] && source ${HOME}/.bash_prompt
 [[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
 
 kernel=`uname -s`
