@@ -30,7 +30,7 @@ verbosity = 1
 whitespace = warn
 
 [push]
-default = simple
+default = current
 
 [diff]
 renames = copies
