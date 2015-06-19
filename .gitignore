@@ -1,0 +1,18 @@
+# start by ignoring everything
+*
+
+# add exceptions to some files/directories
+!.aliases
+!.bash_login
+!.bash_logout
+!.bash_profile
+!.bash_prompt
+!.bashrc
+!.gitconfig
+!.gitignore
+!.gitignore.global
+!.inputrc
+!.profile
+!.tmux.conf
+!.vimrc
+!.zshrc

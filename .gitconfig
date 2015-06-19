@@ -1,0 +1,53 @@
+[core]
+autocrlf = false
+editor = vim
+excludesfile = ~/.gitignore.global
+filemode = false
+pager = less -+F -X -Q
+
+[color "branch"]
+current = yellow reverse
+local = yellow
+remote = green
+
+[color "diff"]
+meta = yellow bold
+frag = magenta bold
+old = red bold
+new = green bold
+
+[color "status"]
+added = green
+changed = yellow
+untracked = red
+
+[merge]
+log = true
+stat = true
+verbosity = 1
+
+[apply]
+whitespace = warn
+
+[push]
+default = simple
+
+[diff]
+renames = copies
+renamelimit = 0
+mnemonicprefix = true
+
+[rerere]
+enabled = true
+autoupdate = true
+
+[help]
+autocorrect = 15
+
+[include]
+path = ~/.gitconfig.local
+
+[alias]
+l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
