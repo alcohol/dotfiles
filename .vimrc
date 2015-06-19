@@ -92,7 +92,7 @@ set foldmethod=marker
 
 """ Mappings
 
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 set pastetoggle=<F6>
 
 augroup AutoCommands
