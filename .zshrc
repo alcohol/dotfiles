@@ -10,6 +10,10 @@ ZSH_THEME="gentoo"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
@@ -47,38 +51,19 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-[[ -d /usr/local/opt/coreutils/libexec/gnubin ]] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-
-# You may need to manually set your language environment
+export CLICOLOR=1
+export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export EDITOR='vim -p -X'
+export VISUAL=${EDITOR}
+export GIT_EDITOR=${EDITOR}
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+source $ZSH/oh-my-zsh.sh
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+[[ -d /usr/local/opt/coreutils/libexec/gnubin ]] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 [[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
 
