@@ -8,7 +8,7 @@
 # If not running interactively, exit
 [[ $- != *i* ]] && return
 
-stty -ixon
+stty -ixon -ixoff
 
 export CLICOLOR=1
 export TERM="xterm-256color"
