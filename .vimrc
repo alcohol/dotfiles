@@ -114,6 +114,8 @@ augroup AutoCommands
 
     " http://www.python.org/dev/peps/pep-0008/
     autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+    autocmd FileType json setlocal softtabstop=2 tabstop=2 shiftwidth=2
+    autocmd FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2
 
     " airline related
     let g:airline#extensions#tabline#enabled = 1
