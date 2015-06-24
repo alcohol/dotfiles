@@ -2,6 +2,9 @@
 # Read when opening a new (interactive) shell that is not a login shell.
 #
 
+[[ -f /etc/bashrc ]] && source /etc/bashrc
+[[ -f /etc/bash.bashrc ]] && source /etc/bash.bashrc
+
 # If not running interactively, exit
 [[ $- != *i* ]] && return
 
