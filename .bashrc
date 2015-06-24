@@ -29,7 +29,7 @@ kernel=`uname -s`
 
 # Linux
 if [[ "$kernel" == 'Linux' ]]; then
-    shopt -s autocd checkhash checkwinsize cmdhist dirspell dotglob globstar histappend nocaseglob nocasematch nullglob
+    shopt -s autocd checkhash checkwinsize cmdhist dirspell dotglob globstar histappend nocaseglob nocasematch
 fi
 
 # MacOSX
