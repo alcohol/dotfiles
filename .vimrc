@@ -112,8 +112,9 @@ augroup AutoCommands
     " Remove any trailing whitespace in the file
     autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-    " http://www.python.org/dev/peps/pep-0008/
+    " Some indent preferences
     autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+    autocmd FileType php setlocal softtabstop=4 tabstop=4 shiftwidth=4
     autocmd FileType json setlocal softtabstop=2 tabstop=2 shiftwidth=2
     autocmd FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2
 
