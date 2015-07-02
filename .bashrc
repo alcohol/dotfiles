@@ -11,7 +11,6 @@
 stty -ixon -ixoff
 
 export CLICOLOR=1
-export TERM="xterm-256color"
 export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='l[sla]:[bf]g:pwd:clear:history'
