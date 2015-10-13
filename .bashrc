@@ -33,3 +33,6 @@ fi
 
 # MacOSX
 [[ -d /usr/local/opt/coreutils/libexec/gnubin ]] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+
+# Composer
+[[ -d ${HOME}/.composer/vendor/bin ]] && export PATH=${PATH}:${HOME}/.composer/vendor/bin

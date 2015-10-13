@@ -64,6 +64,11 @@ export GIT_EDITOR=${EDITOR}
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -d /usr/local/opt/coreutils/libexec/gnubin ]] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-[[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
+# MacOSX
+[[ -d /usr/local/opt/coreutils/libexec/gnubin ]] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
 
+# Composer
+[[ -d ${HOME}/.composer/vendor/bin ]] && export PATH=${PATH}:${HOME}/.composer/vendor/bin
+
+# Aliases, shared with bash
+[[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
