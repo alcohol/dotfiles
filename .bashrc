@@ -2,37 +2,25 @@
 # Read when opening a new (interactive) shell that is not a login shell.
 #
 
+# System wide aliases and functions should go in /etc/bashrc. Personal
+# environment variables and startup programs should go into ~/.bash_profile.
+# Personal aliases and functions should go into ~/.bashrc.
 [[ -f /etc/bashrc ]] && source /etc/bashrc
-[[ -f /etc/bash.bashrc ]] && source /etc/bash.bashrc
 
-# If not running interactively, exit
+# It the shell is not interactive, bail.
 [[ $- != *i* ]] && return
 
+# Custom bash prompt.
+[[ -s ${HOME}/.bash_prompt ]] && source ${HOME}/.bash_prompt
+# Personal aliases.
+[[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
+# Personal exports.
+[[ -s ${HOME}/.exports ]] && source ${HOME}/.exports
+
+# Disable flow control (allows rebinding ctrl+s/q).
 stty -ixon -ixoff
 
-export CLICOLOR=1
-export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export HISTCONTROL=ignoreboth
-export HISTIGNORE='l[sla]:[bf]g:pwd:clear:history'
-export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export EDITOR='vim -p -X'
-export VISUAL=${EDITOR}
-export GIT_EDITOR=${EDITOR}
-
-[[ -s ${HOME}/.bash_prompt ]] && source ${HOME}/.bash_prompt
-[[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
-
 kernel=`uname -s`
-
-# Linux
 if [[ "$kernel" == 'Linux' ]]; then
     shopt -s autocd checkhash checkwinsize cmdhist dirspell dotglob globstar histappend nocaseglob nocasematch
 fi
-
-# MacOSX
-[[ -d /usr/local/opt/coreutils/libexec/gnubin ]] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-
-# Composer
-[[ -d ${HOME}/.composer/vendor/bin ]] && export PATH=${PATH}:${HOME}/.composer/vendor/bin
