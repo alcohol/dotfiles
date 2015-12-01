@@ -8,6 +8,7 @@
 !.bash_profile
 !.bash_prompt
 !.bashrc
+!.exports
 !.gitconfig
 !.gitignore
 !.gitignore.global

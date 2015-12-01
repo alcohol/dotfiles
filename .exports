@@ -1,0 +1,25 @@
+#
+# Personal export definitions.
+#
+
+# Default PATH.
+PATH="/usr/local/bin:/usr/bin:/bin"
+# Add sbin directories if effective user is root.
+[[ $EUID -eq 0 ]] && PATH="${PATH}:/usr/sbin:/sbin"
+# Add ~/bin.
+[[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
+# Add Homebrew's coreutils.
+[[ -d "${HOME}/.composer/vendor/bin" ]] && PATH="${HOME}/.composer/vendor/bin:${PATH}"
+# Add Composer's global bin directory.
+[[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+
+export PATH="$PATH"
+export CLICOLOR=1
+export HISTCONTROL=ignoreboth
+export HISTIGNORE='l[sla]:[bf]g:pwd:clear:history'
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export EDITOR='vim -p -X'
+export VISUAL=${EDITOR}
+export GIT_EDITOR=${EDITOR}
+export TERM=tmux-256color
