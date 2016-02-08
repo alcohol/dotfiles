@@ -22,4 +22,3 @@ export LC_ALL=en_US.UTF-8
 export EDITOR='vim -p -X'
 export VISUAL=${EDITOR}
 export GIT_EDITOR=${EDITOR}
-export TERM=tmux-256color
