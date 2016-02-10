@@ -3,9 +3,7 @@
 #
 
 # Default PATH.
-PATH="/usr/local/bin:/usr/bin:/bin"
-# Add sbin directories if effective user is root.
-[[ $EUID -eq 0 ]] && PATH="${PATH}:/usr/sbin:/sbin"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Add ~/bin.
 [[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
 # Add Composer's global bin directory.
