@@ -8,8 +8,10 @@ PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 [[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
 # Add Composer's global bin directory.
 [[ -d "${HOME}/.composer/vendor/bin" ]] && PATH="${HOME}/.composer/vendor/bin:${PATH}"
-# Add Homebrew's coreutils.
+# Add gnubin of some Homebrew packages.
 [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+[[ -s "/usr/local/opt/gnu-tar/libexec/gnubin" ]] && PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+[[ -s "/usr/local/opt/gnu-sed/libexec/gnubin" ]] && PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 export PATH="$PATH"
 export CLICOLOR=1
