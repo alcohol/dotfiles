@@ -3,7 +3,7 @@
 #
 
 # Default PATH.
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 # Add ~/bin.
 [[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
 # Add Composer's global bin directory.

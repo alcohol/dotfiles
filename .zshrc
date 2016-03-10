@@ -52,16 +52,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git)
 
 # User configuration
-
-export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export CLICOLOR=1
-export TERM="xterm-256color"
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export EDITOR='vim -p -X'
-export VISUAL=${EDITOR}
-export GIT_EDITOR=${EDITOR}
-
 source $ZSH/oh-my-zsh.sh
 
 [[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
