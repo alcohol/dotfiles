@@ -4,19 +4,26 @@
 
 # Default PATH.
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-# Add ~/bin.
-[[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
-# Add Composer's global bin directory.
-[[ -d "${HOME}/.composer/vendor/bin" ]] && PATH="${HOME}/.composer/vendor/bin:${PATH}"
-# Add gnubin of some Homebrew packages.
-[[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-[[ -s "/usr/local/opt/gnu-tar/libexec/gnubin" ]] && PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-[[ -s "/usr/local/opt/gnu-sed/libexec/gnubin" ]] && PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
+# Conditionally add some directories if they exist.
+directories=(
+    "${HOME}/bin"
+    "$(composer global config bin-dir --absolute 2>/dev/null)"
+    "/usr/local/opt/coreutils/libexec/gnubin"
+    "/usr/local/opt/gnu-tar/libexec/gnubin"
+    "/usr/local/opt/gnu-sed/libexec/gnubin"
+)
+
+for dir in "${directories[@]}"; do
+    [[ -d "$dir" ]] && PATH="$dir:$PATH"
+done
 
 export PATH="$PATH"
+
+# Some other defaults
 export CLICOLOR=1
 export HISTCONTROL=ignoreboth
-export HISTIGNORE='l[sla]:[bf]g:pwd:clear:history'
+export HISTIGNORE='cd:l[sla]:[bf]g:pwd:clear:history'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR='vim -p -X'
