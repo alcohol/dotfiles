@@ -13,13 +13,13 @@ directories=(
     "/usr/local/opt/gnu-sed/libexec/gnubin"
 )
 
-if command -v composer >/dev/null 2>&1; then
+if command -v composer global config bin-dir --absolute >/dev/null 2>&1; then
     directories+=(
-        "$(composer global config bin-dir --absolute 2>/dev/null)"
+        "$(composer global config bin-dir --absolute)"
     )
 fi
 
-if command -v brew >/dev/null 2>&1; then
+if command -v brew --prefix homebrew/php/php70 >/dev/null 2>&1; then
     directories+=(
         "$(brew --prefix homebrew/php/php70)/bin"
     )
