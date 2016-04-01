@@ -3,16 +3,27 @@
 #
 
 # Default PATH.
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
 # Conditionally add some directories if they exist.
 directories=(
     "${HOME}/bin"
-    "$(composer global config bin-dir --absolute 2>/dev/null)"
     "/usr/local/opt/coreutils/libexec/gnubin"
     "/usr/local/opt/gnu-tar/libexec/gnubin"
     "/usr/local/opt/gnu-sed/libexec/gnubin"
 )
+
+if command -v composer >/dev/null 2>&1; then
+    directories+=(
+        "$(composer global config bin-dir --absolute 2>/dev/null)"
+    )
+fi
+
+if command -v brew >/dev/null 2>&1; then
+    directories+=(
+        "$(brew --prefix homebrew/php/php70)/bin"
+    )
+fi
 
 for dir in "${directories[@]}"; do
     [[ -d "$dir" ]] && PATH="$dir:$PATH"
