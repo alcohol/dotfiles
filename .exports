@@ -3,9 +3,9 @@
 #
 
 # Default PATH.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
-# Conditionally add some directories if they exist.
+# Create an array of directories to check.
 directories=(
     "${HOME}/bin"
     "/usr/local/opt/coreutils/libexec/gnubin"
@@ -13,18 +13,21 @@ directories=(
     "/usr/local/opt/gnu-sed/libexec/gnubin"
 )
 
+# Add global composer bin directory to array.
 if command -v composer global config bin-dir --absolute >/dev/null 2>&1; then
     directories+=(
         "$(composer global config bin-dir --absolute)"
     )
 fi
 
+# Add php 7 binary directory (OSX/Homebrew) to array.
 if command -v brew --prefix homebrew/php/php70 >/dev/null 2>&1; then
     directories+=(
         "$(brew --prefix homebrew/php/php70)/bin"
     )
 fi
 
+# Check array and prefix existing directories to path.
 for dir in "${directories[@]}"; do
     [[ -d "$dir" ]] && PATH="$dir:$PATH"
 done
