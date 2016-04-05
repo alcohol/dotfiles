@@ -17,6 +17,14 @@ whitespace = warn
 [branch]
 autosetupmerge = true
 
+[user]
+signingkey = 9430CF93
+name = Rob Bast
+email = rob.bast@gmail.com
+
+[commit]
+gpgsign = true
+
 [pull]
 rebase = true
 
