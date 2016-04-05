@@ -5,37 +5,41 @@ excludesfile = ~/.gitignore.global
 filemode = false
 pager = less -+F -X -Q
 
-[color "branch"]
-current = yellow reverse
-local = yellow
-remote = green
+[color]
+diff = auto
+branch = auto
+status = auto
+ui = true
 
-[color "diff"]
-meta = yellow bold
-frag = magenta bold
-old = red bold
-new = green bold
+[apply]
+whitespace = warn
 
-[color "status"]
-added = green
-changed = yellow
-untracked = red
+[branch]
+autosetupmerge = true
+
+[pull]
+rebase = true
+
+[push]
+default = simple
 
 [merge]
 log = true
 stat = true
 verbosity = 1
+defaultToUpstream = true
 
-[apply]
-whitespace = warn
-
-[push]
-default = current
+[rebase]
+autosquash = true
 
 [diff]
 renames = copies
 renamelimit = 0
 mnemonicprefix = true
+tool = vimdiff
+
+[difftool]
+prompt = false
 
 [rerere]
 enabled = true
@@ -52,6 +56,7 @@ l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(re
 b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 sp = !git stash && git pull --rebase && git stash pop
 p = !git pull --rebase
-
-[rebase]
-autosquash = true
+co = checkout
+ci = commit
+br = branch
+ls-ignored = ls-files --exclude-standard --ignored --others
