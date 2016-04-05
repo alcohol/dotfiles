@@ -3,7 +3,7 @@ autocrlf = false
 editor = vim
 excludesfile = ~/.gitignore.global
 filemode = false
-pager = less -+F -X -Q
+pager = less -FQXS --
 
 [color]
 diff = auto
