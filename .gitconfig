@@ -18,7 +18,7 @@ whitespace = warn
 autosetupmerge = true
 
 [user]
-signingkey = 9430CF93
+signingkey = 6E75B103
 name = Rob Bast
 email = rob.bast@gmail.com
 
