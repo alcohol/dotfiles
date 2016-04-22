@@ -14,16 +14,9 @@ directories=(
 )
 
 # Add global composer bin directory to array.
-if command -v composer global config bin-dir --absolute >/dev/null 2>&1; then
+if command -v composer >/dev/null 2>&1; then
     directories+=(
-        "$(composer global config bin-dir --absolute)"
-    )
-fi
-
-# Add php 7 binary directory (OSX/Homebrew) to array.
-if command -v brew --prefix homebrew/php/php70 >/dev/null 2>&1; then
-    directories+=(
-        "$(brew --prefix homebrew/php/php70)/bin"
+        "$(composer global config bin-dir --absolute 2>/dev/null)"
     )
 fi
 
