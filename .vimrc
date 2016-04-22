@@ -16,6 +16,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'elzr/vim-json'
 Plugin 'justinmk/vim-sneak'
 Plugin 'cespare/vim-toml'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 
@@ -118,7 +119,11 @@ augroup AutoCommands
     autocmd FileType json setlocal softtabstop=4 tabstop=4 shiftwidth=4
     autocmd FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2
 
-    " airline related
+    " airline
     let g:airline#extensions#tabline#enabled = 1
+
+    " nerdtree
+    let g:NERDTreeWinPos = 'right'
+    autocmd VimEnter * NERDTree
 
 augroup end
