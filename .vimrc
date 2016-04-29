@@ -1,11 +1,6 @@
-""" General / Core
-
-set nocompatible
-filetype off
+""" Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
-
 Plugin 'nginx.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
@@ -17,9 +12,11 @@ Plugin 'elzr/vim-json'
 Plugin 'justinmk/vim-sneak'
 Plugin 'cespare/vim-toml'
 Plugin 'scrooloose/nerdtree'
-
 call vundle#end()
 
+""" General / Core
+set nocompatible
+filetype off
 filetype plugin indent on
 set confirm
 set modeline
@@ -30,7 +27,6 @@ set ttyfast
 
 
 """ User interface
-
 set hidden
 set gdefault
 set background=dark
@@ -39,17 +35,6 @@ set wildmenu
 set ruler
 set laststatus=2
 set cmdheight=1
-
-set statusline=
-set statusline +=%*\ %n\ %*    " buffer number
-set statusline +=%*%{&ff}%*    " file format
-set statusline +=%*%y%*        " file type
-set statusline +=%*\ %<%F%*    " full path
-set statusline +=%*%m%*        " modified flag
-set statusline +=%*%=%l%*      " current line
-set statusline +=%*/%L%*       " total lines
-set statusline +=%*%4c\ %*     " column number
-
 set showcmd
 set showmode
 set backspace=indent,eol,start
@@ -64,16 +49,25 @@ set formatoptions=cq
 set textwidth=120
 set wrapmargin=0
 
+""" Statusline
+set statusline=
+set statusline +=%*\ %n\ %*    " buffer number
+set statusline +=%*%{&ff}%*    " file format
+set statusline +=%*%y%*        " file type
+set statusline +=%*\ %<%F%*    " full path
+set statusline +=%*%m%*        " modified flag
+set statusline +=%*%=%l%*      " current line
+set statusline +=%*/%L%*       " total lines
+set statusline +=%*%4c\ %*     " column number
+
 
 """ Searching
-
 set incsearch
 set ignorecase
 set smartcase
 
 
 """ Syntax / code stuff
-
 syntax on
 set showmatch
 set matchpairs+=<:>
@@ -86,7 +80,6 @@ set shiftround
 
 
 """ Folding
-
 set foldenable
 set foldmethod=marker
 
@@ -124,6 +117,8 @@ augroup AutoCommands
 
     " nerdtree
     let g:NERDTreeWinPos = 'right'
-    autocmd VimEnter * NERDTree
+    autocmd VimEnter * NERDTree | wincmd p
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 augroup end
