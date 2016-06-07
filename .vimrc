@@ -1,8 +1,13 @@
+""" Init before Vundle
+set nocompatible
+filetype off
+syntax on
+
 """ Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'nginx.vim'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'nginx.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kien/ctrlp.vim'
@@ -15,8 +20,6 @@ Plugin 'scrooloose/nerdtree'
 call vundle#end()
 
 """ General / Core
-set nocompatible
-filetype off
 filetype plugin indent on
 set confirm
 set modeline
@@ -68,7 +71,6 @@ set smartcase
 
 
 """ Syntax / code stuff
-syntax on
 set showmatch
 set matchpairs+=<:>
 set shiftwidth=4
