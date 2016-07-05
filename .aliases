@@ -8,6 +8,7 @@ alias mv='mv -i'
 alias ls='ls -hAF --color=auto'
 alias ll='ls -lp --group-directories-first'
 alias tmux='TERM=screen-256color tmux'
+alias muxenv='eval $(tmux showenv -s)'
 
 function paste() {
     tail -n +1 -- "$@" | curl --data-binary "@-" https://paste.robbast.nl
