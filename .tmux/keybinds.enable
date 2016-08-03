@@ -14,5 +14,5 @@ bind-key -n S-Right display-panes \; select-pane -R
 # toggle mouse
 bind-key -n F12 source ~/.tmux/mouse.enable
 
-# remove keybinds
-bind-key -n S-F12 source ~/.tmux/keybinds.disable \; display-message "Keybinds: DISABLED"
+# disable keybinds
+bind-key F12 source ~/.tmux/keybinds.disable \; display-message "Keybinds: DISABLED"
