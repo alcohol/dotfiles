@@ -2,6 +2,7 @@
 *
 
 # add exceptions to some files/directories
+!.tmux/
 !.aliases
 !.bash_login
 !.bash_logout

@@ -1,0 +1,18 @@
+# reload config
+bind-key -n C-F5 source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
+
+# cycle windows
+bind-key -n C-left prev
+bind-key -n C-right next
+
+# cycle panes
+bind-key -n S-Up display-panes \; select-pane -U
+bind-key -n S-Down display-panes \; select-pane -D
+bind-key -n S-Left display-panes \; select-pane -L
+bind-key -n S-Right display-panes \; select-pane -R
+
+# toggle mouse
+bind-key -n F12 source ~/.tmux/mouse.enable
+
+# remove keybinds
+bind-key -n S-F12 source ~/.tmux/keybinds.disable \; display-message "Keybinds: DISABLED"

@@ -119,7 +119,7 @@ augroup AutoCommands
 
     " nerdtree
     let g:NERDTreeWinPos = 'right'
-    autocmd VimEnter * NERDTree | wincmd p
+    " autocmd VimEnter * NERDTree | wincmd p
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
