@@ -10,6 +10,16 @@ alias ll='ls -lp --group-directories-first'
 alias tmux='TERM=screen-256color tmux'
 alias muxenv='eval $(tmux showenv -s)'
 
-function paste() {
+paste() {
     tail -n +1 -- "$@" | curl --data-binary "@-" https://paste.robbast.nl
+}
+
+man() {
+    LESS_TERMCAP_md=$'\e[01;36m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
 }
