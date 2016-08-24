@@ -55,7 +55,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Tweak terminalparty theme
-PROMPT='%(?,%{$fg[green]%},%{$fg[red]%}) %% '
+PROMPT='%(?,%{$fg[green]%},%{$fg[red]%}) %% %{$reset_color%}'
 RPS1='%{$fg[yellow]%}%2~$(git_prompt_info)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[white]%}("
