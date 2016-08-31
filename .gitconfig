@@ -20,6 +20,10 @@ autosetupmerge = true
 [user]
 name = Rob Bast
 email = rob.bast@gmail.com
+signingkey = 73076E35E6165F39
+
+[commit]
+gpgsign = true
 
 [pull]
 rebase = true
