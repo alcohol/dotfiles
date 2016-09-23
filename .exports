@@ -3,29 +3,26 @@
 #
 
 # Default PATH.
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+declare -x PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
-# Create an array of directories to check.
+# Homebrew directories to check.
 directories=(
-    "${HOME}/bin"
     "/usr/local/opt/coreutils/libexec/gnubin"
     "/usr/local/opt/gnu-tar/libexec/gnubin"
     "/usr/local/opt/gnu-sed/libexec/gnubin"
 )
 
-# Add global composer bin directory to array.
+# Other directories to check.
+[[ -d $HOME ]] && directories+=("${HOME}/bin")
+
+# Extend PATH.
+for dir in "${directories[@]}"; do [[ -d "$dir" ]] && PATH="$dir:$PATH"; done
+
+# Check if Composer is available, and if so, add global Composer bin directory.
+# [!] Order here is important since `command` uses $PATH to check for existence.
 if command -v composer >/dev/null 2>&1; then
-    directories+=(
-        "$(composer global config bin-dir --absolute 2>/dev/null)"
-    )
+    PATH="$(composer global config bin-dir --absolute 2>/dev/null):$PATH"
 fi
-
-# Check array and prefix existing directories to path.
-for dir in "${directories[@]}"; do
-    [[ -d "$dir" ]] && PATH="$dir:$PATH"
-done
-
-export PATH="$PATH"
 
 # Some other defaults
 export CLICOLOR=1
