@@ -12,10 +12,6 @@
 
 # Custom bash prompt.
 [[ -s ${HOME}/.bash_prompt ]] && source ${HOME}/.bash_prompt
-# Personal aliases.
-[[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
-# Personal exports.
-[[ -s ${HOME}/.exports ]] && source ${HOME}/.exports
 
 # Disable flow control (allows rebinding ctrl+s/q).
 stty -ixon -ixoff
@@ -24,3 +20,8 @@ kernel=`uname -s`
 if [[ "$kernel" == 'Linux' ]]; then
     shopt -s autocd checkhash checkwinsize cmdhist dirspell dotglob globstar histappend nocaseglob nocasematch
 fi
+# Personal aliases.
+[[ -s ${HOME}/.aliases ]] && source ${HOME}/.aliases
+# Personal exports.
+[[ -s ${HOME}/.exports ]] && source ${HOME}/.exports
+
