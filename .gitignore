@@ -4,13 +4,10 @@
 # add exceptions to some files/directories
 !.tmux/
 !.tmux/**
-!.aliases
 !.bash_login
 !.bash_logout
 !.bash_profile
-!.bash_prompt
 !.bashrc
-!.exports
 !.gitconfig
 !.gitignore
 !.gitignore.global
@@ -18,4 +15,3 @@
 !.profile
 !.tmux.conf
 !.vimrc
-!.zshrc
