@@ -2,20 +2,16 @@
 # Read when opening a new (interactive) shell that is not a login shell.
 #
 
-# System wide aliases and functions should go in /etc/bashrc. Personal
-# environment variables and startup programs should go into ~/.bash_profile.
-# Personal aliases and functions should go into ~/.bashrc.
-
 # source global bashrc
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 
-# if prompt is not interactive, exit
+# exit if shell is not interactive
 [[ $- != *i* ]] && return
 
-# disable flow control (allows rebinding ctrl+s/q).
+# feature that annoys me, also i wanna rebind ctrl-{s,q}
 stty -ixon -ixoff
 
-# if on linux, set some shell options
+# some shell options on linux
 kernel=`uname -s`
 if [[ "$kernel" == 'Linux' ]]; then
   shopt -s autocd
@@ -33,34 +29,57 @@ if [[ "$kernel" == 'Linux' ]]; then
   shopt -s nocasematch
 fi
 
+# it's my shit
+umask 077
+
 # {{{ exports
 
-declare -x PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+for dir in \
+  "/usr/local/opt/coreutils/libexec/gnubin" \
+  "/usr/local/opt/gnu-tar/libexec/gnubin" \
+  "/usr/local/opt/gnu-sed/libexec/gnubin" \
+  "$HOME/bin";
+  do [[ -d $dir ]] && PATH="$dir:$PATH"; done
 
-directories=(
-  "/usr/local/opt/coreutils/libexec/gnubin"
-  "/usr/local/opt/gnu-tar/libexec/gnubin"
-  "/usr/local/opt/gnu-sed/libexec/gnubin"
-)
-
-[[ -d $HOME ]] && directories+=("${HOME}/bin")
-
-for dir in "${directories[@]}"; do [[ -d "$dir" ]] && PATH="$dir:$PATH"; done
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+export XDG_DATA_HOME=~/.local/share
+for dir in \
+  "$XDG_CONFIG_HOME" \
+  "$XDG_CACHE_HOME" \
+  "$XDG_DATA_HOME";
+  do [[ ! -d $dir ]] && mkdir -p "$dir"; done
 
 # Check if Composer is available, and if so, add global Composer bin directory.
 #  <!> Order here is important since `command` uses $PATH to check for existence.
 if command -v composer >/dev/null 2>&1; then
-  PATH="$(composer global config bin-dir --absolute 2>/dev/null):$PATH"
+  export COMPOSER_HOME=~/.config/composer
+  export COMPOSER_CACHE_DIR=~/.cache/composer
+  binDir="$(composer global config bin-dir --absolute 2>/dev/null)"
+  [[ -d $binDir ]] && PATH="$binDir:$PATH"
+  unset binDir
+fi
+
+# Weechat does not use XDG specification but can read config dir from ENV
+if command -v weechat >/dev/null 2>&1; then
+  export WEECHAT_HOME=~/.config/weechat
+fi
+
+if command -v go >/dev/null 2>&1; then
+  export GOROOT="$(go env GOROOT)"
+  export GOPATH="$HOME/projects/go"
 fi
 
 export CLICOLOR=1
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='cd:l[sla]:[bf]g:pwd:clear:history'
+export HISTFILE="$XDG_DATA_HOME"/bash/history
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR='vim -p -X'
-export VISUAL=${EDITOR}
-export GIT_EDITOR=${EDITOR}
+export VISUAL=$EDITOR
+export GIT_EDITOR=$EDITOR
 
 # }}}
 # {{{ autocomplete
@@ -73,7 +92,7 @@ export GIT_EDITOR=${EDITOR}
 # Check if keychain is available, and if so, run it through eval to export
 # the environment variables SSH_AUTH_SOCK and SSH_AGENT_PID.
 if command -v keychain >/dev/null 2>&1; then
-  [[ -f "${HOME}/.ssh/id_rsa" ]] && eval `keychain --quiet --agents ssh --eval id_rsa`
+  [[ -f ~/.ssh/id_rsa ]] && eval `keychain --quiet --agents ssh --eval id_rsa`
 fi
 
 # }}}

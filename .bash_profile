@@ -2,5 +2,8 @@
 # Read when opening an interactive login shell.
 #
 
+# source global profile
 [[ -f /etc/profile ]] && source /etc/profile
-[[ -f ${HOME}/.bashrc ]] && source ${HOME}/.bashrc
+
+# source user bashrc
+[[ -f ~/.bashrc ]] && source ~/.bashrc
