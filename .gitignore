@@ -4,6 +4,8 @@
 # add exceptions to some files/directories
 !.tmux/
 !.tmux/**
+!.vim/
+!.vim/vimrc
 !.bash_login
 !.bash_logout
 !.bash_profile
@@ -14,4 +16,3 @@
 !.inputrc
 !.profile
 !.tmux.conf
-!.vimrc
