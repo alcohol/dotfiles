@@ -54,18 +54,17 @@ for dir in \
 # Check if Composer is available, and if so, add global Composer bin directory.
 #  <!> Order here is important since `command` uses $PATH to check for existence.
 if command -v composer >/dev/null 2>&1; then
-  export COMPOSER_HOME=~/.config/composer
-  export COMPOSER_CACHE_DIR=~/.cache/composer
+  export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
+  export COMPOSER_CACHE_DIR="$XDG_CACHE_HOME/composer"
   binDir="$(composer global config bin-dir --absolute 2>/dev/null)"
   [[ -d $binDir ]] && PATH="$binDir:$PATH"
   unset binDir
 fi
 
-# Weechat does not use XDG specification but can read config dir from ENV
-if command -v weechat >/dev/null 2>&1; then
-  export WEECHAT_HOME=~/.config/weechat
-fi
+# Programs that do not use XDG specification but can read config dir from ENV
+if command -v weechat >/dev/null 2>&1; then export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"; fi
 
+# Setup Go environment
 if command -v go >/dev/null 2>&1; then
   export GOROOT="$(go env GOROOT)"
   export GOPATH="$HOME/projects/go"
