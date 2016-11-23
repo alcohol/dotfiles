@@ -11,6 +11,9 @@
 # feature that annoys me, also i wanna rebind ctrl-{s,q}
 stty -ixon -ixoff
 
+# clean slate
+unalias -a
+
 # some shell options on linux
 kernel=`uname -s`
 if [[ "$kernel" == 'Linux' ]]; then
@@ -29,7 +32,7 @@ if [[ "$kernel" == 'Linux' ]]; then
   shopt -s nocasematch
 fi
 
-# it's my shit
+# i'm a private person
 umask 077
 
 # {{{ exports
@@ -73,7 +76,7 @@ fi
 export CLICOLOR=1
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='cd:l[sla]:[bf]g:pwd:clear:history'
-export HISTFILE="$XDG_DATA_HOME"/bash/history
+export HISTFILE="$XDG_DATA_HOME/bash/history"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR='vim -p -X'
@@ -93,37 +96,6 @@ export GIT_EDITOR=$EDITOR
 if command -v keychain >/dev/null 2>&1; then
   [[ -f ~/.ssh/id_rsa ]] && eval `keychain --quiet --agents ssh --eval id_rsa`
 fi
-
-# }}}
-# {{{ aliases & functions
-
-alias mkdir='mkdir -p -v'
-alias grep='grep --color=auto'
-alias vi='vim'
-alias svim='sudoedit'
-alias h='history'
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias ls='ls -hAF --color=auto'
-alias ll='ls -lp --group-directories-first'
-alias tmux='TERM=screen-256color tmux'
-alias muxenv='eval $(tmux showenv -s)'
-
-paste() {
-  tail -n +1 -- "$@" | curl --data-binary "@-" https://paste.robbast.nl
-}
-
-man() {
-  LESS_TERMCAP_me=$'\e[0m' \
-  LESS_TERMCAP_se=$'\e[0m' \
-  LESS_TERMCAP_ue=$'\e[0m' \
-  LESS_TERMCAP_md=$'\e[01;36m' \
-  LESS_TERMCAP_mb=$'\e[01;36m' \
-  LESS_TERMCAP_us=$'\e[01;32m' \
-  LESS_TERMCAP_so=$'\e[01;44;33m' \
-  command man "$@"
-}
 
 # }}}
 # {{{ prompt
@@ -159,5 +131,40 @@ export PS4="+ "
 unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht
 unset bldblk bldred bldgrn bldylw bldblu bldpur bldcyn bldwht
 unset txtrst
+
+# }}}
+# {{{ aliases & functions
+
+paste() {
+  tail -n +1 -- "$@" | curl --data-binary "@-" https://paste.robbast.nl
+}
+
+man() {
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_md=$'\e[01;36m' \
+  LESS_TERMCAP_mb=$'\e[01;36m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  LESS_TERMCAP_so=$'\e[01;44;33m' \
+  command man "$@"
+}
+
+aliases() {
+  alias mkdir='mkdir -p -v'
+  alias grep='grep --color=auto'
+  alias vi='vim'
+  alias svim='sudoedit'
+  alias h='history'
+  alias rm='rm -i'
+  alias cp='cp -i'
+  alias mv='mv -i'
+  alias ls='ls -hAF --color=auto'
+  alias ll='ls -lp --group-directories-first'
+  alias tmux='TERM=screen-256color tmux'
+  alias muxenv='eval $(tmux showenv -s)'
+}
+
+aliases
 
 # }}}
