@@ -32,9 +32,6 @@ if [[ "$kernel" == 'Linux' ]]; then
   shopt -s nocasematch
 fi
 
-# i'm a private person
-umask 077
-
 # {{{ exports
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
