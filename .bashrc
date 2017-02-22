@@ -116,9 +116,9 @@ bldwht='\e[1;37m' # White
 txtrst='\e[0m' # Text Reset
 
 if (( EUID )); then
-  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\h\[$txtrst\] \[$bldblu\]\w \[$bldwht\]> \[$txtrst\]"
+  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldwht\]> \[$txtrst\]"
 else
-  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\h\[$txtrst\] \[$bldblu\]\w \[$bldred\]> \[$txtrst\]"
+  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldred\]> \[$txtrst\]"
 fi
 
 export PS2="> "
