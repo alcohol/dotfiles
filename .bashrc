@@ -71,9 +71,8 @@ if command -v go >/dev/null 2>&1; then
 fi
 
 export CLICOLOR=1
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='cd:l[sla]:[bf]g:pwd:clear:history'
-export HISTFILE="$XDG_DATA_HOME/bash/history"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR='vim -p -X'
