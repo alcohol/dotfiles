@@ -83,6 +83,7 @@ export GIT_EDITOR=$EDITOR
 # {{{ autocomplete
 
 [[ -f /usr/share/git/completion/git-completion.bash ]] && source /usr/share/git/completion/git-completion.bash
+[[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
 # }}}
 # {{{ keychain
