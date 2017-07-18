@@ -34,14 +34,17 @@ fi
 
 # {{{ exports
 
+# Expand PATH based on what is installed through homebrew etc.
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 for dir in \
   "/usr/local/opt/coreutils/libexec/gnubin" \
+  "/usr/local/opt/findutils/libexec/gnubin" \
   "/usr/local/opt/gnu-tar/libexec/gnubin" \
   "/usr/local/opt/gnu-sed/libexec/gnubin" \
   "$HOME/bin";
   do [[ -d $dir ]] && PATH="$dir:$PATH"; done
 
+# Make sure XDG_ variables are set regardless of environment.
 export XDG_CONFIG_HOME=~/.config
 export XDG_CACHE_HOME=~/.cache
 export XDG_DATA_HOME=~/.local/share
@@ -54,20 +57,17 @@ for dir in \
 # Check if Composer is available, and if so, add global Composer bin directory.
 #  <!> Order here is important since `command` uses $PATH to check for existence.
 if command -v composer >/dev/null 2>&1; then
+  # Manually override composer home and cache dir using XDG_ specification directories.
   export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
   export COMPOSER_CACHE_DIR="$XDG_CACHE_HOME/composer"
-  PATH="$(composer global config bin-dir --absolute 2>/dev/null):$PATH"
+  # Add composer global bin dir to PATH if it exists.
+  bindir=$(composer global config bin-dir --absolute 2> /dev/null)
+  [[ -d $bindir ]] && PATH="$bindir:$PATH"
 fi
 
 # WeeChat does not use XDG specification but can read "config" dir from ENV
 if command -v weechat >/dev/null 2>&1;
   then export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
-fi
-
-# Setup Go environment
-if command -v go >/dev/null 2>&1; then
-  export GOROOT="$(go env GOROOT)"
-  export GOPATH="$HOME/projects/go"
 fi
 
 export CLICOLOR=1
