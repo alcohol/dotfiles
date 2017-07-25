@@ -37,6 +37,7 @@ fi
 # Expand PATH based on what is installed through homebrew etc.
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 for dir in \
+  "/usr/local/opt/python/libexec/bin" \
   "/usr/local/opt/coreutils/libexec/gnubin" \
   "/usr/local/opt/findutils/libexec/gnubin" \
   "/usr/local/opt/gnu-tar/libexec/gnubin" \
