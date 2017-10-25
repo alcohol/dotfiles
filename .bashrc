@@ -43,6 +43,7 @@ for dir in \
   "/usr/local/opt/gnu-tar/libexec/gnubin" \
   "/usr/local/opt/gnu-sed/libexec/gnubin" \
   "/usr/local/opt/make/libexec/gnubin" \
+  "/usr/local/opt/sqlite/bin" \
   "/usr/local/opt/curl/bin" \
   "$HOME/bin";
   do [[ -d $dir ]] && PATH="$dir:$PATH"; done
