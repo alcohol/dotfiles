@@ -34,19 +34,21 @@ fi
 
 # {{{ exports
 
-# Expand PATH based on what is installed through homebrew etc.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-for dir in \
-  "/usr/local/opt/python/libexec/bin" \
-  "/usr/local/opt/coreutils/libexec/gnubin" \
-  "/usr/local/opt/findutils/libexec/gnubin" \
-  "/usr/local/opt/gnu-tar/libexec/gnubin" \
-  "/usr/local/opt/gnu-sed/libexec/gnubin" \
-  "/usr/local/opt/make/libexec/gnubin" \
-  "/usr/local/opt/sqlite/bin" \
-  "/usr/local/opt/curl/bin" \
-  "$HOME/bin";
-  do [[ -d $dir ]] && PATH="$dir:$PATH"; done
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+
+# Expand PATH based on what is installed through homebrew, if installed.
+if command -v brew >/dev/null 2>&1; then
+  for dir in \
+    "/usr/local/opt/python/libexec/bin" \
+    "/usr/local/opt/coreutils/libexec/gnubin" \
+    "/usr/local/opt/findutils/libexec/gnubin" \
+    "/usr/local/opt/gnu-tar/libexec/gnubin" \
+    "/usr/local/opt/gnu-sed/libexec/gnubin" \
+    "/usr/local/opt/make/libexec/gnubin" \
+    "/usr/local/opt/sqlite/bin" \
+    "/usr/local/opt/curl/bin";
+    do [[ -d $dir ]] && PATH="$dir:$PATH"; done
+fi
 
 # Make sure XDG_ variables are set regardless of environment.
 export XDG_CONFIG_HOME=~/.config
