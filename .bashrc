@@ -54,13 +54,11 @@ fi
 export XDG_CONFIG_HOME=~/.config
 export XDG_CACHE_HOME=~/.cache
 export XDG_DATA_HOME=~/.local/share
-for dir in \
-  "$XDG_CONFIG_HOME" \
-  "$XDG_CACHE_HOME" \
-  "$XDG_DATA_HOME";
-  do [[ ! -d $dir ]] && mkdir -p "$dir"; done
+for dir in "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"; do
+  [[ ! -d $dir ]] && mkdir -p "$dir";
+done
 
-# Check if Composer is available, and if so, add global Composer bin directory.
+# Check if Composer is available, and if so, add global Composer bin directory to PATH.
 #  <!> Order here is important since `command` uses $PATH to check for existence.
 if command -v composer >/dev/null 2>&1; then
   # Manually override composer home and cache dir using XDG_ specification directories.
@@ -72,8 +70,8 @@ if command -v composer >/dev/null 2>&1; then
 fi
 
 # WeeChat does not use XDG specification but can read "config" dir from ENV
-if command -v weechat >/dev/null 2>&1;
-  then export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
+if command -v weechat >/dev/null 2>&1; then
+  export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 fi
 
 export CLICOLOR=1
@@ -86,13 +84,12 @@ export VISUAL=$EDITOR
 export GIT_EDITOR=$EDITOR
 
 # }}}
-# {{{ autocomplete
+# {{{ bash completion
 
-if [[ ! -f /usr/local/etc/bash_completion ]]; then
-    [[ -f /usr/share/git/completion/git-completion.bash ]] && source /usr/share/git/completion/git-completion.bash
-    [[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash
+if [[ -f /usr/local/etc/bash_completion ]]; then
+  source /usr/local/etc/bash_completion
 else
-    source /usr/local/etc/bash_completion
+  [[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 fi
 
 # }}}
