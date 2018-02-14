@@ -68,6 +68,7 @@ l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(re
 b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 sp = !git stash && git pull --rebase && git stash pop
 p = !git pull --rebase
+pp = !git pull && git push
 co = checkout
 ci = commit
 br = branch
