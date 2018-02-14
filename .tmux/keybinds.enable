@@ -15,8 +15,10 @@ bind-key S-down display-panes \; select-pane -D
 bind-key S-left display-panes \; select-pane -L
 bind-key S-right display-panes \; select-pane -R
 
-# toggle mouse
-bind-key -n F12 source ~/.tmux/mouse.enable
+# easily toggle synchronization (mnemonic: e is for echo)
+# sends input to all panes in a given window.
+bind-key e setw synchronize-panes on
+bind-key E setw synchronize-panes off
 
 # disable keybinds
 bind-key F12 source ~/.tmux/keybinds.disable \; display-message "Keybinds: DISABLED"

@@ -2,10 +2,14 @@
 unbind-key -n C-F5
 unbind-key -n C-left
 unbind-key -n C-right
-unbind-key -n S-Up
-unbind-key -n S-Down
-unbind-key -n S-Left
-unbind-key -n S-Right
+unbind-key C-left
+unbind-key C-right
+unbind-key S-Up
+unbind-key S-Down
+unbind-key S-Left
+unbind-key S-Right
+unbind-key e
+unbind-key E
 
 # enable keybinds
 bind-key F12 source ~/.tmux/keybinds.enable \; display-message "Keybinds: ENABLED"
