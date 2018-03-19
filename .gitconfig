@@ -73,6 +73,3 @@ co = checkout
 ci = commit
 br = branch
 ls-ignored = ls-files --exclude-standard --ignored --others
-
-[diff "ansible-vault"]
-textconv = ansible-vault view --vault-password-file .vault_password
