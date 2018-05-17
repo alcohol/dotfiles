@@ -43,6 +43,7 @@ tool = vimdiff
 
 [rebase]
 autosquash = true
+autostash = true
 
 [diff]
 renames = copies
