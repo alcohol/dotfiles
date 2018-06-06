@@ -6,6 +6,8 @@
 !.tmux/**
 !.vim/
 !.vim/vimrc
+!.bashrc.d/
+!.bashrc.d/**
 !.bash_login
 !.bash_logout
 !.bash_profile
