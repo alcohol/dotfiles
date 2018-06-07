@@ -16,10 +16,10 @@ bldcyn='\e[1;36m' # Cyan
 bldwht='\e[1;37m' # White
 txtrst='\e[0m' # Text Reset
 
-if (( EUID )); then
-  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldwht\]> \[$txtrst\]"
-else
+if (( ! EUID )); then
   export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldred\]> \[$txtrst\]"
+else
+  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldwht\]> \[$txtrst\]"
 fi
 
 export PS2="> "

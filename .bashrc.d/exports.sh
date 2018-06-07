@@ -17,7 +17,7 @@ export VISUAL=$EDITOR
 export GIT_EDITOR=$EDITOR
 
 if (( ! EUID )); then
-  exit
+  return
 fi
 
 # Check if Composer is available, and if so, add global Composer bin directory to PATH.

@@ -13,7 +13,7 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 if (( ! EUID )); then
-  exit
+  return
 fi
 
 # Check if keychain is available, and if so, run it through eval to export
