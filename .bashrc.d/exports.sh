@@ -7,6 +7,19 @@ for dir in "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"; do
   [[ ! -d $dir ]] && mkdir -p "$dir";
 done
 
+export CLICOLOR=1
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE='cd:l[sla]:[bf]g:pwd:clear:history'
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export EDITOR='vim -p -X'
+export VISUAL=$EDITOR
+export GIT_EDITOR=$EDITOR
+
+if (( ! EUID )); then
+  exit
+fi
+
 # Check if Composer is available, and if so, add global Composer bin directory to PATH.
 #  <!> Order here is important since `command` uses $PATH to check for existence.
 export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
@@ -47,12 +60,3 @@ fi
 if command -v weechat >/dev/null 2>&1; then
   export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 fi
-
-export CLICOLOR=1
-export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE='cd:l[sla]:[bf]g:pwd:clear:history'
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export EDITOR='vim -p -X'
-export VISUAL=$EDITOR
-export GIT_EDITOR=$EDITOR
