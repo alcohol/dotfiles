@@ -7,7 +7,7 @@
 !.vim/
 !.vim/vimrc
 !.bashrc.d/
-!.bashrc.d/**
+!.bashrc.d/*.sh
 !.bash_login
 !.bash_logout
 !.bash_profile

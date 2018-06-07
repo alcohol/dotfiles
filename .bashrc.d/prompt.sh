@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -14,12 +16,13 @@ bldblu='\e[1;34m' # Blue
 bldpur='\e[1;35m' # Purple
 bldcyn='\e[1;36m' # Cyan
 bldwht='\e[1;37m' # White
+
 txtrst='\e[0m' # Text Reset
 
 if (( ! EUID )); then
-  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldred\]> \[$txtrst\]"
+  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldred\]\$ \[$txtrst\]"
 else
-  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldwht\]> \[$txtrst\]"
+  export PS1="\[$bldwht\]\u\[$txtrst\]@\[$bldwht\]\H\[$txtrst\] \[$bldblu\]\w \[$bldwht\]\$ \[$txtrst\]"
 fi
 
 export PS2="> "

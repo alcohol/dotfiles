@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Make sure XDG_ variables are set regardless of environment,
 # and create their respective directories if they do not exist yet.
 export XDG_CONFIG_HOME=~/.config

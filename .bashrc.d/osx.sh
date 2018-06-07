@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Expand PATH based on what is installed through homebrew, if installed.
 if command -v brew >/dev/null 2>&1; then
   for dir in \

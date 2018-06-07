@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 paste() {
   tail -n +1 -- "$@" | curl --data-binary "@-" https://paste.robbast.nl
