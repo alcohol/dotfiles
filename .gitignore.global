@@ -1,6 +1,34 @@
-.idea
+# editors
+/.idea/
+.netrwhist
+Session.vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# operating system(s)
+.AppleDB
+.AppleDesktop
+.AppleDouble
 .DS_Store
+.DocumentRevisions-V100
+.LSOverride
 .Spotlight-V100
+.TemporaryItems
 .Trashes
-Thumbs.db
+.VolumeIcon.icns
+._*
+.apdisk
+.com.apple.timemachine.donotpresent
+.directory
+.fseventsd
 Desktop.ini
+Network Trash Folder
+Temporary Items
+Thumbs.db
+
+# ansible vault
+.ansible-vault-password
+.vault_password
