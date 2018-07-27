@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # Read when opening a new (interactive) shell that is not a login shell.
 #
@@ -15,7 +16,7 @@ stty -ixon -ixoff
 unalias -a
 
 # some shell options on linux
-kernel=`uname -s`
+kernel=$(uname -s)
 if [[ "$kernel" == 'Linux' ]]; then
   shopt -s autocd
   shopt -s cdspell
@@ -51,12 +52,12 @@ fi
 
 if [[ -f /usr/local/etc/bash_completion ]]; then
   source /usr/local/etc/bash_completion
-else
-  [[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
+elif [[ -f /usr/share/bash-completion/bash_completion ]]; then
+  source /usr/share/bash-completion/bash_completion
 fi
 
 if [[ -d $HOME/.bashrc.d ]]; then
-  for file in $HOME/.bashrc.d/*.sh; do
+  for file in "$HOME"/.bashrc.d/*.sh; do
     source "$file"
   done
 fi

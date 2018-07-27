@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
 #
-# Read when opening an interactive login shell.
+# First /etc/profile is read (if it exists), then the first file from
+# the following list that exists and is readable is processed:
+#
+#   ~/.bash_profile
+#   ~/.bash_login
+#   ~/.profile
 #
 
-# source global profile
-[[ -f /etc/profile ]] && source /etc/profile
-
-# source user bashrc
-[[ -f ~/.bashrc ]] && source ~/.bashrc
+[[ -f $HOME/.bashrc ]] && source "$HOME"/.bashrc
