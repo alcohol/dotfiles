@@ -51,8 +51,8 @@ else
         --volume $COMPOSER_CACHE_DIR:$COMPOSER_CACHE_DIR:delegated \
         --volume /etc/passwd:/etc/passwd:ro \
         --volume /etc/group:/etc/group:ro \
-        --volume $(pwd):/app \
-        --workdir /app \
+        --volume "$(pwd)":/workdir \
+        --workdir /workdir \
         composer "$@"
     }
   fi
@@ -70,8 +70,8 @@ if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
       --user $(id -u):$(id -g) \
       --volume /etc/passwd:/etc/passwd:ro \
       --volume /etc/group:/etc/group:ro \
-      --volume $(pwd):/app \
-      --workdir /app \
+      --volume "$(pwd)":/workdir \
+      --workdir /workdir \
       php:cli-alpine "$@"
   }
 fi
