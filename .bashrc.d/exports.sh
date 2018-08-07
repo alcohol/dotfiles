@@ -58,6 +58,24 @@ else
   fi
 fi
 
+if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
+  php () {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+      $tty \
+      --interactive \
+      --rm \
+      --cap-drop ALL \
+      --user $(id -u):$(id -g) \
+      --volume /etc/passwd:/etc/passwd:ro \
+      --volume /etc/group:/etc/group:ro \
+      --volume $(pwd):/app \
+      --workdir /app \
+      php:cli-alpine "$@"
+  }
+fi
+
 # WeeChat does not use XDG specification but can read "config" dir from ENV
 if command -v weechat >/dev/null 2>&1; then
   export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
