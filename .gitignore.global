@@ -1,5 +1,5 @@
 # editors
-/.idea/
+.idea
 .netrwhist
 Session.vim
 [._]*.s[a-v][a-z]
