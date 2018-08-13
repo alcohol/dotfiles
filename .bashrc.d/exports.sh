@@ -72,6 +72,23 @@ if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
       --volume /etc/group:/etc/group:ro \
       --volume "$(pwd)":/workdir \
       --workdir /workdir \
+      --entrypoint /usr/local/bin/php \
+      php:cli-alpine "$@"
+  }
+  phpdbg () {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+      $tty \
+      --interactive \
+      --rm \
+      --cap-drop ALL \
+      --user $(id -u):$(id -g) \
+      --volume /etc/passwd:/etc/passwd:ro \
+      --volume /etc/group:/etc/group:ro \
+      --volume "$(pwd)":/workdir \
+      --workdir /workdir \
+      --entrypoint /usr/local/bin/phpdbg \
       php:cli-alpine "$@"
   }
 fi
