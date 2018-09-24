@@ -66,8 +66,10 @@ if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
       $tty \
       --interactive \
       --rm \
+      --init \
       --cap-drop ALL \
       --user $(id -u):$(id -g) \
+      --volume /home/rob:/home/rob \
       --volume /etc/passwd:/etc/passwd:ro \
       --volume /etc/group:/etc/group:ro \
       --volume "$(pwd)":/workdir \
@@ -82,8 +84,10 @@ if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
       $tty \
       --interactive \
       --rm \
+      --init \
       --cap-drop ALL \
       --user $(id -u):$(id -g) \
+      --volume /home/rob:/home/rob \
       --volume /etc/passwd:/etc/passwd:ro \
       --volume /etc/group:/etc/group:ro \
       --volume "$(pwd)":/workdir \
