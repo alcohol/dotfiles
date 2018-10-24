@@ -97,6 +97,14 @@ if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
   }
 fi
 
+if command -v parallel > /dev/null 2>&1 && command -v parallel > /dev/null 2>&1; then
+  gitr () {
+    pwd=$(pwd)
+    parallel --group --jobs 0 --will-cite "echo; echo '## {1}'; echo && git -C {1} $@" ::: \
+      $(find "$pwd" -maxdepth 1 -mindepth 1 -type d )
+  }
+fi
+
 # WeeChat does not use XDG specification but can read "config" dir from ENV
 if command -v weechat >/dev/null 2>&1; then
   export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
