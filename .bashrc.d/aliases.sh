@@ -39,3 +39,7 @@ aliases() {
 }
 
 aliases
+
+if command -v trash >/dev/null 2>&1; then
+  alias atom='ELECTRON_TRASH=trash-cli atom'
+fi
