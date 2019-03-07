@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # clone Vundle and install Vim plugins
-if [[ ! -d $HOME/.vim/bundle ]]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git "$HOME"/.vim/bundle/Vundle.vim
-  vim +PluginInstall +qall &
+if [[ ! -d $HOME/.vim/plugged ]]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  vim +PlugInstall +qall &
 fi
