@@ -24,6 +24,7 @@ signingkey = 73076E35E6165F39
 
 [commit]
 gpgsign = true
+verbose = true
 
 [pull]
 rebase = true
@@ -50,6 +51,7 @@ renames = copies
 renamelimit = 0
 mnemonicprefix = true
 tool = vimdiff
+submodule = diff
 
 [difftool]
 prompt = false
