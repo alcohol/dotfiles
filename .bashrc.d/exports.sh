@@ -97,7 +97,49 @@ if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
   }
 fi
 
-if command -v parallel > /dev/null 2>&1 && command -v parallel > /dev/null 2>&1; then
+if ! command -v php72 > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
+  php72 () {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+      $tty \
+      --interactive \
+      --rm \
+      --init \
+      --cap-drop ALL \
+      --user $(id -u):$(id -g) \
+      --volume /home/rob:/home/rob \
+      --volume /etc/passwd:/etc/passwd:ro \
+      --volume /etc/group:/etc/group:ro \
+      --volume "$(pwd)":/workdir \
+      --workdir /workdir \
+      --entrypoint /usr/local/bin/php \
+      php:7.2-cli-alpine "$@"
+  }
+fi
+
+if ! command -v php73 > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
+  php72 () {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+      $tty \
+      --interactive \
+      --rm \
+      --init \
+      --cap-drop ALL \
+      --user $(id -u):$(id -g) \
+      --volume /home/rob:/home/rob \
+      --volume /etc/passwd:/etc/passwd:ro \
+      --volume /etc/group:/etc/group:ro \
+      --volume "$(pwd)":/workdir \
+      --workdir /workdir \
+      --entrypoint /usr/local/bin/php \
+      php:7.3-cli-alpine "$@"
+  }
+fi
+
+if command -v parallel > /dev/null 2>&1; then
   gitr () {
     pwd=$(pwd)
     parallel --group --jobs 0 --will-cite "echo; echo '## {1}'; echo && git -C {1} $@" ::: \
