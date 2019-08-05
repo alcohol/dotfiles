@@ -18,19 +18,7 @@ unalias -a
 # some shell options on linux
 kernel=$(uname -s)
 if [[ "$kernel" == 'Linux' ]]; then
-  shopt -s autocd
-  shopt -s cdspell
-  shopt -s checkhash
-  shopt -s checkjobs
-  shopt -s checkwinsize
-  shopt -s cmdhist
-  shopt -s dirspell
-  shopt -s dotglob
-  shopt -s extglob
-  shopt -s globstar
-  shopt -s histappend
-  shopt -s nocaseglob
-  shopt -s nocasematch
+  source "$HOME/.bash_shopt"
 fi
 
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
