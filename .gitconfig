@@ -66,9 +66,6 @@ autocorrect = 15
 [include]
 path = ~/.gitconfig.local
 
-[submodule]
-recurse = true
-
 [alias]
 l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
 b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
@@ -81,5 +78,5 @@ br = branch
 ls-ignored = ls-files --exclude-standard --ignored --others
 
 [diff "ansible-vault"]
-textconv = ansible-vault --vault-id .ansible-vault-password view
+textconv = ansible-vault view --vault-id .ansible-vault-password
 cachetextconv = false
