@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Check if Docker is available
 if ! command -v docker >/dev/null 2>&1; then
   echo "Cannot run 'php', Docker not available" >&2
   exit 1
