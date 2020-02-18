@@ -5,6 +5,7 @@
 export XDG_CONFIG_HOME=~/.config
 export XDG_CACHE_HOME=~/.cache
 export XDG_DATA_HOME=~/.local/share
+
 for dir in "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"; do
   [[ ! -d $dir ]] && mkdir -p "$dir";
 done
@@ -22,130 +23,12 @@ if (( ! EUID )); then
   return
 fi
 
-# Check if Composer is available, and if so, add global Composer bin directory to PATH.
-#  <!> Order here is important since `command` uses $PATH to check for existence.
-export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
-export COMPOSER_CACHE_DIR="$XDG_CACHE_HOME/composer"
+export COMPOSER_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/composer"
+export COMPOSER_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/composer"
+
 for dir in "$COMPOSER_HOME" "$COMPOSER_CACHE_DIR"; do
   [[ ! -d $dir ]] && mkdir -p "$dir";
 done
-if command -v composer >/dev/null 2>&1; then
-  # Add composer global bin dir to PATH if it exists.
-  bindir=$(composer global config bin-dir --absolute 2> /dev/null)
-  [[ -d $bindir ]] && PATH="$bindir:$PATH"
-else
-  # Check if Docker is available
-  if command -v docker >/dev/null 2>&1; then
-    composer () {
-      tty=
-      tty -s && tty=--tty
-      docker run \
-        $tty \
-        --interactive \
-        --rm \
-        --cap-drop ALL \
-        --env COMPOSER_HOME \
-        --env COMPOSER_CACHE_DIR \
-        --user $(id -u):$(id -g) \
-        --volume $COMPOSER_HOME:$COMPOSER_HOME:delegated \
-        --volume $COMPOSER_CACHE_DIR:$COMPOSER_CACHE_DIR:delegated \
-        --volume /etc/passwd:/etc/passwd:ro \
-        --volume /etc/group:/etc/group:ro \
-        --volume "$(pwd)":/workdir \
-        --workdir /workdir \
-        composer "$@"
-    }
-  fi
-fi
-
-if ! command -v php > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
-  php () {
-    tty=
-    tty -s && tty=--tty
-    docker run \
-      $tty \
-      --interactive \
-      --rm \
-      --init \
-      --cap-drop ALL \
-      --user $(id -u):$(id -g) \
-      --volume /home/rob:/home/rob \
-      --volume /etc/passwd:/etc/passwd:ro \
-      --volume /etc/group:/etc/group:ro \
-      --volume "$(pwd)":/workdir \
-      --workdir /workdir \
-      --entrypoint /usr/local/bin/php \
-      php:cli-alpine "$@"
-  }
-  phpdbg () {
-    tty=
-    tty -s && tty=--tty
-    docker run \
-      $tty \
-      --interactive \
-      --rm \
-      --init \
-      --cap-drop ALL \
-      --user $(id -u):$(id -g) \
-      --volume /home/rob:/home/rob \
-      --volume /etc/passwd:/etc/passwd:ro \
-      --volume /etc/group:/etc/group:ro \
-      --volume "$(pwd)":/workdir \
-      --workdir /workdir \
-      --entrypoint /usr/local/bin/phpdbg \
-      php:cli-alpine "$@"
-  }
-fi
-
-if ! command -v php72 > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
-  php72 () {
-    tty=
-    tty -s && tty=--tty
-    docker run \
-      $tty \
-      --interactive \
-      --rm \
-      --init \
-      --cap-drop ALL \
-      --user $(id -u):$(id -g) \
-      --volume /home/rob:/home/rob \
-      --volume /etc/passwd:/etc/passwd:ro \
-      --volume /etc/group:/etc/group:ro \
-      --volume "$(pwd)":/workdir \
-      --workdir /workdir \
-      --entrypoint /usr/local/bin/php \
-      php:7.2-cli-alpine "$@"
-  }
-fi
-
-if ! command -v php73 > /dev/null 2>&1 && command -v docker > /dev/null 2>&1; then
-  php72 () {
-    tty=
-    tty -s && tty=--tty
-    docker run \
-      $tty \
-      --interactive \
-      --rm \
-      --init \
-      --cap-drop ALL \
-      --user $(id -u):$(id -g) \
-      --volume /home/rob:/home/rob \
-      --volume /etc/passwd:/etc/passwd:ro \
-      --volume /etc/group:/etc/group:ro \
-      --volume "$(pwd)":/workdir \
-      --workdir /workdir \
-      --entrypoint /usr/local/bin/php \
-      php:7.3-cli-alpine "$@"
-  }
-fi
-
-if command -v parallel > /dev/null 2>&1; then
-  gitr () {
-    pwd=$(pwd)
-    parallel --group --jobs 0 --will-cite "test -d {1}/.git || exit; echo; echo '## {1}'; echo && git -C {1} $@" ::: \
-      $(find "$pwd" -maxdepth 1 -mindepth 1 -type d)
-  }
-fi
 
 # WeeChat does not use XDG specification but can read "config" dir from ENV
 if command -v weechat >/dev/null 2>&1; then
