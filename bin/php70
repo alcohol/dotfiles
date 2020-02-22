@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 if ! command -v docker >/dev/null 2>&1; then
   echo "Cannot run 'php70', Docker not available" >&2
   exit 1
