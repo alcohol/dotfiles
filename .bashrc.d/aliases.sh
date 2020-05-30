@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 paste() {
-  tail -n +1 -- "$@" | curl --data-binary "@-" https://
+  tail -n +1 -- "$@" | curl --data-binary "@-" http://sprunge.us
 }
 
 man() {
