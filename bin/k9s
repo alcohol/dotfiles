@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v docker >/dev/null 2>&1; then
+  echo "Cannot run 'k9s', Docker not available" >&2
+  exit 1
+fi
+
+tty=
+tty -s && tty=--tty
+
+[[ -d "$HOME/.kube" ]] || mkdir "$HOME/.kube"
+[[ -d "$HOME/.k9s" ]] || mkdir "$HOME/.k9s"
+
+docker run \
+  $tty \
+  --interactive \
+  --rm \
+  --user $(id -u):$(id -g) \
+  --cap-drop ALL \
+  --env TERM=xterm-256color \
+  --tmpfs /tmp \
+  --volume /etc/passwd:/etc/passwd:ro \
+  --volume /etc/group:/etc/group:ro \
+  --volume "$HOME/.kube":/home/rob/.kube \
+  --volume "$HOME/.k9s":/home/rob/.k9s \
+  derailed/k9s "$@"
