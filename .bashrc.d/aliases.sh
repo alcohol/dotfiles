@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+unalias -a
+
 paste() {
-  tail -n +1 -- "$@" | curl --data-binary "@-" http://sprunge.us
+  tail -n +1 -- "$@" | curl --form "clbin=<-" https://clbin.com
 }
 
 man() {

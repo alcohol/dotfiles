@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-if (( ! EUID )); then
-  return
-fi
+# Bail if OS is not Darwin based.
+[[ "$(uname -s)" != 'Darwin' ]] && return
 
 # Expand PATH based on what is installed through homebrew, if installed.
 if command -v brew >/dev/null 2>&1; then
@@ -15,7 +14,9 @@ if command -v brew >/dev/null 2>&1; then
     "/usr/local/opt/make/libexec/gnubin" \
     "/usr/local/opt/sqlite/bin" \
     "/usr/local/opt/curl/bin";
-    do [[ -d $dir ]] && PATH="$dir:$PATH"; done
+  do
+    [[ -d $dir ]] && export PATH="$dir:$PATH"
+  done
 fi
 
 # Check if keychain is available, and if so, run it through eval to export
