@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+[[ -f /usr/bin/k9s ]] && exec /usr/bin/k9s "$@"
+
 if ! command -v docker >/dev/null 2>&1; then
   echo "Cannot run 'k9s', Docker not available" >&2
   exit 1
