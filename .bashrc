@@ -15,8 +15,14 @@
 # Allow rebinding ctrl-{s,q}
 stty -ixon -ixoff
 
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+# Base PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
+# Extend PATH
+[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/.krew/bin" ]] && PATH="${HOME}/.krew/bin:$PATH"
+
+# Source scripts found in ~/.bashrc.d/
 if [[ -d "$HOME/.bashrc.d" ]]; then
   for file in "$HOME"/.bashrc.d/*.sh; do
     source "$file"
