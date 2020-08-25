@@ -33,7 +33,7 @@ rebase = true
 prune = true
 
 [push]
-default = simple
+default = current
 
 [merge]
 log = true
