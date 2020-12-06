@@ -13,7 +13,7 @@
 [[ "$(uname -s)" == 'Linux' ]] && source "$HOME/.bash_shopt"
 
 # Allow rebinding ctrl-{s,q}
-stty -ixon -ixoff
+[[ $- == *i* ]] && stty -ixon -ixoff
 
 # Base PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
