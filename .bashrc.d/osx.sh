@@ -13,6 +13,8 @@ if command -v brew >/dev/null 2>&1; then
     "/usr/local/opt/gnu-sed/libexec/gnubin" \
     "/usr/local/opt/make/libexec/gnubin" \
     "/usr/local/opt/sqlite/bin" \
+    "/usr/local/opt/e2fsprogs/bin" \
+    "/usr/local/opt/e2fsprogs/sbin" \
     "/usr/local/opt/curl/bin";
   do
     [[ -d $dir ]] && export PATH="$dir:$PATH"
