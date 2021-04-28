@@ -29,8 +29,6 @@ aliases() {
   alias mkdir='mkdir -p -v'
   alias grep='grep --color=auto'
   alias vi='vim'
-  alias svim='sudoedit'
-  alias h='history'
   alias rm='rm -i'
   alias cp='cp -i'
   alias mv='mv -i'
@@ -41,10 +39,6 @@ aliases() {
 }
 
 aliases
-
-if command -v trash >/dev/null 2>&1; then
-  alias atom='ELECTRON_TRASH=trash-cli atom'
-fi
 
 if command -v parallel > /dev/null 2>&1; then
   gitr () {
