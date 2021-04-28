@@ -31,6 +31,7 @@ rebase = true
 
 [fetch]
 prune = true
+parallel = 0
 
 [push]
 default = current
