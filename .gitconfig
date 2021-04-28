@@ -1,5 +1,5 @@
 [core]
-autocrlf = false
+autocrlf = input
 editor = vim
 excludesfile = ~/.gitignore.global
 filemode = false
@@ -12,7 +12,7 @@ status = auto
 ui = true
 
 [apply]
-whitespace = warn
+whitespace = fix
 
 [branch]
 autosetupmerge = true
