@@ -73,3 +73,6 @@ ls-ignored = ls-files --exclude-standard --ignored --others
 [diff "ansible-vault"]
 textconv = ansible-vault view --vault-id .ansible-vault-password
 cachetextconv = false
+
+[init]
+defaultBranch = main
