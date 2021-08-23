@@ -20,6 +20,7 @@ docker run \
   --cap-drop ALL \
   --read-only \
   --tmpfs /tmp \
+  --network host \
   --volume $COMPOSER_HOME:$COMPOSER_HOME:delegated \
   --volume $COMPOSER_CACHE_DIR:$COMPOSER_CACHE_DIR:delegated \
   --volume /etc/passwd:/etc/passwd:ro \
