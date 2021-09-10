@@ -43,7 +43,8 @@ aliases
 if command -v parallel > /dev/null 2>&1; then
   gitr () {
     pwd=$(pwd)
+    mapfile directories < <(find "$pwd" -maxdepth 1 -mindepth 1 -type d)
     parallel --group --jobs 0 --will-cite "test -d {1}/.git || exit; echo; echo '## {1}'; echo && git -C {1} $*" ::: \
-      $(find "$pwd" -maxdepth 1 -mindepth 1 -type d)
+      "${directories[@]}"
   }
 fi

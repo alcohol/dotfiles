@@ -24,5 +24,5 @@ fi
 # Check if keychain is available, and if so, run it through eval to export
 # the environment variables SSH_AUTH_SOCK and SSH_AGENT_PID.
 if command -v keychain >/dev/null 2>&1; then
-  eval $(keychain --quiet --ignore-missing --agents ssh --eval id_rsa id_ed25519)
+  eval "$(keychain --quiet --ignore-missing --agents ssh --eval id_rsa id_ed25519)"
 fi
