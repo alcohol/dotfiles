@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if ! command -v docker >/dev/null 2>&1; then
-  echo "Cannot run 'php80', Docker not available" >&2
+  echo "Cannot run 'php81', Docker not available" >&2
   exit 1
 fi
 
@@ -24,4 +24,4 @@ docker run \
   --volume "$(pwd)":/workdir \
   --workdir /workdir \
   --entrypoint /usr/local/bin/php \
-  alcohol/php:8.0 "$@"
+  alcohol/php:8.1 "$@"
