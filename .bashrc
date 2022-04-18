@@ -19,9 +19,9 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
 # Extend PATH
-[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
-[[ -d "$HOME/.krew/bin" ]] && PATH="$HOME/.krew/bin:$PATH"
-[[ -d "$HOME/.local/bin" ]] && PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/bin" ]] && PATH="$PATH:$HOME/bin"
+[[ -d "$HOME/.krew/bin" ]] && PATH="$PATH:$HOME/.krew/bin"
+[[ -d "$HOME/.local/bin" ]] && PATH="$PATH:$HOME/.local/bin"
 
 # Source scripts found in ~/.bashrc.d/
 if [[ -d "$HOME/.bashrc.d" ]]; then
