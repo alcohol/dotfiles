@@ -26,6 +26,9 @@ signingkey = 73076E35E6165F39
 gpgsign = true
 verbose = true
 
+[tag]
+gpgsign = true
+
 [pull]
 rebase = true
 
