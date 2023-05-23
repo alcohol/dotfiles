@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if ! command -v docker >/dev/null 2>&1; then
-  echo "Cannot run 'php80', Docker not available" >&2
+  echo "Cannot run 'npx', Docker not available" >&2
   exit 1
 fi
 
@@ -20,10 +20,9 @@ docker run \
   --user $(id -u):$(id -g) \
   --cap-drop ALL \
   --read-only \
-  --mount type=tmpfs,destination=/tmp,tmpfs-mode=1770 \
-  --volume /etc/passwd:/etc/passwd:ro \
-  --volume /etc/group:/etc/group:ro \
+  --env HOME=/tmp \
+  --tmpfs /tmp \
   --volume "$(pwd)":/workdir \
   --workdir /workdir \
-  --entrypoint /usr/local/bin/php \
-  alcohol/php:8.0 "$@"
+  --entrypoint /usr/local/bin/npx \
+  node:current-alpine "$@"

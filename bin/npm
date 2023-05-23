@@ -14,8 +14,11 @@ docker run \
   $tty \
   --interactive \
   --rm \
+  --pull=always \
+  --quiet \
   --init \
   --user $(id -u):$(id -g) \
+  --publish 3000:3000 \
   --cap-drop ALL \
   --read-only \
   --env HOME=/tmp \
