@@ -6,8 +6,10 @@
 # Skipped if --norc is passed or --rcfile <file> specifies another file.
 #
 
-# Source global bashrc if it exists
+# Source global profiles if they exist
 [[ -f /etc/bashrc ]] && source /etc/bashrc
+[[ -f /etc/bash.bashrc ]] && source /etc/bash.bashrc
+[[ -f /etc/profile ]] && source /etc/profile
 
 # Linux specific shell options
 [[ "$(uname -s)" == 'Linux' ]] && source "$HOME/.bash_shopt"
