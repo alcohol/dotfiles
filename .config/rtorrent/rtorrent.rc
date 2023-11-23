@@ -15,11 +15,11 @@ protocol.pex.set = yes
 trackers.use_udp.set = yes
 
 # Peer settings
-throttle.max_peers.normal.set = 60
-throttle.max_peers.seed.set = 80
+throttle.min_peers.normal.set = 40
+throttle.max_peers.normal.set = 90
+throttle.min_peers.seed.set = 10
+throttle.max_peers.seed.set = 30
 throttle.max_uploads.global.set = 250
 throttle.max_uploads.set = 100
-throttle.min_peers.normal.set = 20
-throttle.min_peers.seed.set = 30
 trackers.numwant.set = 80
 protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
