@@ -3,7 +3,7 @@ autocrlf = input
 editor = vim
 excludesfile = ~/.gitignore.global
 filemode = false
-pager = less --no-init --quit-if-one-screen --QUIET --chop-long-lines --RAW-CONTROL-CHARS --tabs 4 --quit-at-eof --
+pager = less --no-init --quit-if-one-screen --QUIET --RAW-CONTROL-CHARS --tabs 4 --quit-at-eof --
 
 [color]
 diff = auto
