@@ -34,10 +34,13 @@ rebase = true
 
 [fetch]
 prune = true
+prunetags = true
 parallel = 0
 
 [push]
 default = current
+autoSetupRemote = true
+followtags = true
 
 [merge]
 log = true
@@ -45,12 +48,16 @@ stat = true
 verbosity = 1
 defaultToUpstream = true
 tool = vimdiff
+conflictstyle = zdiff3
 
 [rebase]
 autosquash = true
 autostash = true
 
 [diff]
+algorithm = histogram
+colorMoved = default
+colorMovedWs = allow-indentation-change
 renames = copies
 renamelimit = 0
 mnemonicprefix = true
