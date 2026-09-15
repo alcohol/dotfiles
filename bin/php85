@@ -20,6 +20,8 @@ docker run \
   --user $(id -u):$(id -g) \
   --cap-drop ALL \
   --mount type=tmpfs,destination=/tmp,tmpfs-mode=1777 \
+  --volume "$SSH_AUTH_SOCK":/tmp/ssh-agent \
+  --env SSH_AUTH_SOCK=/tmp/ssh-agent \
   --volume /etc/passwd:/etc/passwd:ro \
   --volume /etc/group:/etc/group:ro \
   --volume "$(pwd)":/workdir \

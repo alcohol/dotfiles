@@ -7,11 +7,6 @@ fi
 
 for key in "$HOME"/.ssh/id_*; do
     [ -f "$key" ] || continue
-
-    case "$key" in
-        *.pub|*_config|*.known_hosts) continue ;;
-    esac
-
+    [[ "$key" == *.pub ]] && continue
     ssh-add "$key" 2>/dev/null
 done
-
