@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if ! command -v docker >/dev/null 2>&1; then
-  echo "Cannot run 'php80', Docker not available" >&2
+  echo "Cannot run 'php82', Docker not available" >&2
   exit 1
 fi
 
@@ -19,11 +19,10 @@ docker run \
   --init \
   --user $(id -u):$(id -g) \
   --cap-drop ALL \
-  --read-only \
-  --mount type=tmpfs,destination=/tmp,tmpfs-mode=1770 \
+  --mount type=tmpfs,destination=/tmp,tmpfs-mode=1777 \
   --volume /etc/passwd:/etc/passwd:ro \
   --volume /etc/group:/etc/group:ro \
   --volume "$(pwd)":/workdir \
   --workdir /workdir \
   --entrypoint /usr/local/bin/php \
-  alcohol/php:8.0 "$@"
+  alcohol/php:8.5 "$@"
