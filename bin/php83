@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v docker >/dev/null 2>&1; then
+  echo "Cannot run 'php82', Docker not available" >&2
+  exit 1
+fi
+
+tty=
+tty -s && tty=--tty
+
+docker run \
+  $tty \
+  --interactive \
+  --rm \
+  --pull=always \
+  --quiet \
+  --init \
+  --user $(id -u):$(id -g) \
+  --cap-drop ALL \
+  --mount type=tmpfs,destination=/tmp,tmpfs-mode=1777 \
+  --volume "$SSH_AUTH_SOCK":/tmp/ssh-agent \
+  --env SSH_AUTH_SOCK=/tmp/ssh-agent \
+  --volume /etc/passwd:/etc/passwd:ro \
+  --volume /etc/group:/etc/group:ro \
+  --volume "$(pwd)":/workdir \
+  --workdir /workdir \
+  --entrypoint /usr/local/bin/php \
+  alcohol/php:8.3 "$@"
