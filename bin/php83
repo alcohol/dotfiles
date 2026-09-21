@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if ! command -v docker >/dev/null 2>&1; then
-  echo "Cannot run 'php82', Docker not available" >&2
+  echo "Cannot run 'php83', Docker not available" >&2
   exit 1
 fi
 
