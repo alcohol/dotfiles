@@ -2,10 +2,6 @@
 
 unalias -a
 
-paste() {
-  tail -n +1 -- "$@" | curl --form "clbin=<-" https://clbin.com
-}
-
 man() {
   GROFF_NO_SGR=1 \
   LESS="--RAW-CONTROL-CHARS" \
